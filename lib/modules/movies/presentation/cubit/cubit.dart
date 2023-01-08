@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/core/base_use_case/base_use_case.dart';
 import 'package:movies/modules/movies/domain/entities/movie.dart';
 import 'package:movies/modules/movies/domain/use_case/get_now_playing.dart';
 import 'package:movies/modules/movies/domain/use_case/get_popular.dart';
@@ -20,7 +21,7 @@ class MoviesCubit extends Cubit<MoviesStates>{
   List<Movie> nowPlayingModel=[];
   Future<void> getNowPlayingMovies()async {
     emit(MoviesNowPlayingLoadingState());
-    final result=await getNowPlayingUesCase();
+    final result=await getNowPlayingUesCase(const NoParameters());
     result.fold((error){
       emit(MoviesNowPlayingErrorState(error.message));
 
@@ -37,7 +38,7 @@ class MoviesCubit extends Cubit<MoviesStates>{
   Future<void> getPopularMovies()async {
     emit(MoviesPopularLoadingState());
 
-    final result=await getPopularUesCase();
+    final result=await getPopularUesCase(const NoParameters());
     result.fold((error){
       emit(MoviesPopularErrorState(error.message));
 
@@ -54,7 +55,7 @@ class MoviesCubit extends Cubit<MoviesStates>{
   Future<void> getTopRatedMovies()async{
     emit(MoviesTopRatedLoadingState());
 
-    final result=await getTopRatedUesCase();
+    final result=await getTopRatedUesCase(const NoParameters());
     result.fold((error){
       emit(MoviesTopRatedErrorState(error.message));
 
