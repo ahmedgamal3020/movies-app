@@ -4,12 +4,13 @@ import 'package:movies/modules/movies/domain/entities/movie.dart';
 import 'package:movies/modules/movies/domain/use_case/get_now_playing.dart';
 import 'package:movies/modules/movies/domain/use_case/get_popular.dart';
 import 'package:movies/modules/movies/domain/use_case/get_top_rated.dart';
-import 'package:movies/modules/movies/presentation/cubit/states.dart';
+import 'package:movies/modules/movies/presentation/screens/movie_screen/cubit/states.dart';
 
 class MoviesCubit extends Cubit<MoviesStates>{
   final GetNowPlayingUesCase getNowPlayingUesCase;
   final GetPopularUesCase getPopularUesCase;
   final GetTopRatedUesCase getTopRatedUesCase;
+
   MoviesCubit(
       this.getNowPlayingUesCase,
       this.getPopularUesCase,
@@ -61,11 +62,15 @@ class MoviesCubit extends Cubit<MoviesStates>{
 
     },(success){
       topRatedModel=success;
+      print(topRatedModel[0].id);
+      print(topRatedModel[0].title);
       emit(MoviesTopRatedSuccessState(success));
 
     });
 
 
   }
+
+
 }
 

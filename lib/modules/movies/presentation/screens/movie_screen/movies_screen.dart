@@ -5,7 +5,7 @@ import 'package:movies/core/services/services_locator.dart';
 import 'package:movies/modules/movies/presentation/components/now_playing_movies_component.dart';
 import 'package:movies/modules/movies/presentation/components/popular_component.dart';
 import 'package:movies/modules/movies/presentation/components/top_rated_component.dart';
-import 'package:movies/modules/movies/presentation/cubit/cubit.dart';
+import 'package:movies/modules/movies/presentation/screens/movie_screen/cubit/cubit.dart';
 
 class MoviesScreen extends StatelessWidget {
   const MoviesScreen({Key? key}) : super(key: key);

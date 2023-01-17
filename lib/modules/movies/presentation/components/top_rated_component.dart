@@ -3,8 +3,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/core/utils/constants/api_constants.dart';
-import 'package:movies/modules/movies/presentation/cubit/cubit.dart';
-import 'package:movies/modules/movies/presentation/cubit/states.dart';
+import 'package:movies/core/utils/widgets_components/components.dart';
+import 'package:movies/modules/movies/presentation/screens/movie_screen/cubit/cubit.dart';
+import 'package:movies/modules/movies/presentation/screens/movie_screen/cubit/states.dart';
+import 'package:movies/modules/movies/presentation/screens/movie_details_screen/movie_detail_screen.dart';
 import 'package:shimmer/shimmer.dart';
 
 class TopRatedWidget extends StatelessWidget {
@@ -31,7 +33,7 @@ class TopRatedWidget extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 8.0),
                 child: InkWell(
                 onTap: () {
-                /// TODO : NAVIGATE TO  MOVIE DETAILS
+                  navigateTo(context, MovieDetailScreen(id: cubit.topRatedModel[index].id,));
                 },
                 child: ClipRRect(
                 borderRadius:
@@ -53,7 +55,7 @@ class TopRatedWidget extends StatelessWidget {
                 ),
                 ),
                 errorWidget: (context, url, error) =>
-                const Icon(Icons.error),
+                const Icon(Icons.error,color: Colors.white,),
                 ),
                 ),
                 ),

@@ -4,8 +4,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/core/utils/constants/api_constants.dart';
-import 'package:movies/modules/movies/presentation/cubit/cubit.dart';
-import 'package:movies/modules/movies/presentation/cubit/states.dart';
+import 'package:movies/core/utils/widgets_components/components.dart';
+import 'package:movies/modules/movies/presentation/screens/movie_details_screen/movie_detail_screen.dart';
+import 'package:movies/modules/movies/presentation/screens/movie_screen/cubit/cubit.dart';
+import 'package:movies/modules/movies/presentation/screens/movie_screen/cubit/states.dart';
 
 class NowPlayingWidget extends StatelessWidget {
   const NowPlayingWidget({Key? key}) : super(key: key);
@@ -13,7 +15,6 @@ class NowPlayingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MoviesCubit,MoviesStates>(
-      buildWhen: (previous, current)=>previous.runtimeType!=current.runtimeType,
         builder:(context,state){
           print("BlocBuilder NowPlayingWidget");
           MoviesCubit cubit =MoviesCubit.get(context);
@@ -30,7 +31,10 @@ class NowPlayingWidget extends StatelessWidget {
                     (item) {
                   return GestureDetector(
                     key: const Key('openMovieMinimalDetail'),
-                    onTap: () {},
+                    onTap: () {
+                      navigateTo(context, MovieDetailScreen(id: item.id));
+
+                    },
                     child: Stack(
                       children: [
                         ShaderMask(
@@ -54,7 +58,7 @@ class NowPlayingWidget extends StatelessWidget {
                           child: CachedNetworkImage(
                             height: 560.0,
                             imageUrl: ApiConstants.imageUrl(item.backDropPath),
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                           ),
                         ),
                         Align(
@@ -101,8 +105,7 @@ class NowPlayingWidget extends StatelessWidget {
                     ),
                   );
                 },
-              )
-                  .toList(),
+                  ).toList(),
             ),
           );
     }
