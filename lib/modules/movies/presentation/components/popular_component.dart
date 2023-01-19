@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/core/utils/constants/api_constants.dart';
 import 'package:movies/core/utils/widgets_components/components.dart';
 import 'package:movies/modules/movies/presentation/screens/movie_details_screen/movie_detail_screen.dart';
+import 'package:movies/modules/movies/presentation/screens/popular_screen/popular_screen.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:movies/modules/movies/presentation/screens/movie_screen/cubit/cubit.dart';
 import 'package:movies/modules/movies/presentation/screens/movie_screen/cubit/states.dart';
@@ -20,23 +21,20 @@ class PopularWidget extends StatelessWidget {
 
         MoviesCubit cubit = MoviesCubit.get(context);
         return FadeIn(
-          duration: const Duration(milliseconds: 500),
+          duration: const Duration(seconds: 10),
           child: SizedBox(
             height: 170.0,
             child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              itemCount:cubit.popularModel.length,
+              itemCount:5,
               itemBuilder: (context, index) {
                 return Container(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: InkWell(
                     onTap: () {
-
-                   navigateTo(context, MovieDetailScreen(id: cubit.popularModel[index].id,));
-                   print(cubit.popularModel[index].id);
-
+                      navigateTo(context, MovieDetailScreen(id: cubit.popularModel[index].id));
                      },
                     child: ClipRRect(
                       borderRadius:

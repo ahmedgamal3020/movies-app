@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/core/services/services_locator.dart';
 import 'package:movies/core/utils/bloc_observer.dart';
+import 'package:movies/modules/movies/presentation/screens/movie_screen/cubit/cubit.dart';
 import 'package:movies/style/theme.dart';
 
 import 'modules/movies/presentation/screens/movie_screen/movies_screen.dart';
@@ -19,11 +20,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
+
       title: "Movies",
       debugShowCheckedModeBanner: false,
       theme: defaultTheme,
       themeMode: ThemeMode.dark,
       home: const MoviesScreen(),
+
       );
 
   }

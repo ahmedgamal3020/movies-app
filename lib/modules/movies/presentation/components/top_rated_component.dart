@@ -27,7 +27,7 @@ class TopRatedWidget extends StatelessWidget {
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              itemCount: cubit.topRatedModel.length,
+              itemCount: 5,
               itemBuilder: (context, index) {
                 return Container(
                 padding: const EdgeInsets.only(right: 8.0),

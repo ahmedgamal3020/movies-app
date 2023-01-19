@@ -9,6 +9,7 @@ import 'package:movies/core/utils/constants/api_constants.dart';
 import 'package:movies/core/utils/dummy.dart';
 import 'package:movies/modules/movies/domain/entities/genre.dart';
 import 'package:movies/modules/movies/presentation/screens/movie_details_screen/cubit/cubit_movie_details.dart';
+import 'package:movies/style/colors.dart';
 import 'package:shimmer/shimmer.dart';
 
 
@@ -41,13 +42,15 @@ class MovieDetailContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<MovieDetailsCubit, MovieDetailsStates>(
       builder: (context, state) {
+        MovieDetailsCubit cubit =MovieDetailsCubit.get(context);
         return ConditionalBuilder(
-          condition: MovieDetailsCubit.get(context).movieDetailsModel!=null&&
-              MovieDetailsCubit.get(context).movieRecommendationsModel.isNotEmpty,
+          condition: cubit.movieDetailsModel!=null&&
+              cubit.movieRecommendationsModel.isNotEmpty,
           builder: (context){
             return CustomScrollView(
               slivers: [
-                SliverAppBar(pinned: true,
+                SliverAppBar(
+                  pinned: true,
                   expandedHeight: 250.0,
                   flexibleSpace: FlexibleSpaceBar(
                     background: FadeIn(
@@ -88,7 +91,7 @@ class MovieDetailContent extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text( MovieDetailsCubit.get(context).movieDetailsModel!.title,
+                          Text( cubit.movieDetailsModel!.title,
                               style: GoogleFonts.poppins(
                                 fontSize: 23,
                                 fontWeight: FontWeight.w700,
@@ -196,7 +199,9 @@ class MovieDetailContent extends StatelessWidget {
               ],
             );
           },
-          fallback: (context)=>const Center(child: CircularProgressIndicator(),),
+          fallback: (context)=> const Center(child: CircularProgressIndicator(
+            color: Colors.white,
+          ),),
 
         );
   },

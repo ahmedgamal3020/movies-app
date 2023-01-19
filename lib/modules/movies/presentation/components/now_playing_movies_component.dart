@@ -55,10 +55,13 @@ class NowPlayingWidget extends StatelessWidget {
                             );
                           },
                           blendMode: BlendMode.dstIn,
-                          child: CachedNetworkImage(
-                            height: 560.0,
-                            imageUrl: ApiConstants.imageUrl(item.backDropPath),
-                            fit: BoxFit.fill,
+                          child: Hero(
+                           tag:"s",
+                            child: CachedNetworkImage(
+                              height: 560.0,
+                              imageUrl: ApiConstants.imageUrl(item.backDropPath),
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                         Align(
